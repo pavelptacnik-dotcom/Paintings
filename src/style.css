@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+:root {
+  font-family: 'Inter', sans-serif;
+  color: #24231f;
+  background: #f7f6f2;
+  font-size: 12px;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header,
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 4%;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+main {
+  width: 92%;
+  max-width: 1400px;
+  margin: 40px auto 100px;
+}
+
+/* Úvodní rozložení: text vlevo, obraz vpravo */
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 7%;
+  align-items: start;
+}
+
+.artist-intro {
+  max-width: 560px;
+}
+
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.artist-intro h1 {
+  margin: 35px 0 24px;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -.04em;
+}
+
+.artist-bio,
+.artist-statement p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.artist-bio {
+  margin-bottom: 35px;
+}
+
+.artist-statement p:not(.eyebrow) {
+  margin: 0 0 18px;
+}
+
+/* První 3D obraz */
+
+.featured {
+  position: relative;
+  margin: 0;
+  padding-top: 0;
+}
+
+.artwork-placeholder {
+  position: relative;
+  width: 100%;
+  height: min(68vw, 720px);
+  min-height: 350px;
+  overflow: hidden;
+  background: #f7f6f2;
+}
+
+.artwork-placeholder canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Galerie generovaná v main.js */
+
+.works-gallery {
+  width: 80%;
+  max-width: 1100px;
+  margin: 120px auto;
+}
+
+.works-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 55px 28px;
+}
+
+.work-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.work-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity .25s;
+}
+
+.work-item:hover img {
+  opacity: .82;
+}
+
+.work-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 10px;
+  font-size: 10px;
+}
+
+.work-caption span:last-child {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.work-item.image-error {
+  display: none;
+}
+
+/* Zvětšení obrazu */
+
+.painting-lightbox[hidden],
+.lightbox[hidden] {
+  display: none;
+}
+
+.painting-lightbox,
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(247, 246, 242, .98);
+}
+
+.lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightbox-image {
+  display: block;
+  max-width: 85vw;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox-caption {
+  margin-top: 14px;
+  font-size: 10px;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  top: 24px;
+  right: 30px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  font-size: 24px;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 20px;
+  font-size: 10px;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+footer {
+  border-top: 1px solid #e3e1db;
+}
+
+/* Mobilní zobrazení */
+
+@media (max-width: 750px) {
+  .site-header {
+    padding: 20px;
+  }
+
+  main {
+    width: calc(100% - 40px);
+    margin-top: 30px;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .artist-intro {
+    max-width: 100%;
+  }
+
+  .artist-intro h1 {
+    margin-top: 25px;
+  }
+
+  .artwork-placeholder {
+    height: 75vw;
+    min-height: 300px;
+  }
+
+  .works-gallery {
+    width: 100%;
+    margin: 80px auto;
+  }
+
+  .works-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .painting-lightbox,
+  .lightbox {
+    padding: 20px;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+  }
+
+  footer {
+    padding: 20px;
+  }
+}
